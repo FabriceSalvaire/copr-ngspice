@@ -1,0 +1,13 @@
+#! /bin/bash
+
+spectool -g -R libngspice.spec
+
+# rpmbuild -bp libngspice.spec
+# rpmbuild -bc libngspice.spec
+# rpmbuild -bi libngspice.spec
+
+# build all
+# rpmbuild -ba libngspice.spec
+
+# build source
+rpmbuild -bs libngspice.spec

@@ -1,12 +1,7 @@
-# http://rpm-guide.readthedocs.io/en/latest/rpm-guide.html#what-is-a-spec-file
-# http://rpm.org/user_doc/
-
 Name:               libngspice
 Version:            27
 Release:            1%{?dist}
 Summary:            A mixed level/signal circuit simulator
-
-Group:              Applications/Engineering
 License:            BSD
 URL:                http://ngspice.sourceforge.net
 
@@ -55,7 +50,7 @@ export CFLAGS="%{optflags}" # else configure fails
   --with-readline=yes \
   %{nil}
 
-#  --disable-debug \
+# --disable-debug \
 # --enable-maintainer-mode \
 # --enable-dependency-tracking \
 
@@ -74,16 +69,6 @@ rm -rf $RPM_BUILD_ROOT
 
 #---------------------------------------------------------------------------------------------------
 
-# https://fedoraproject.org/wiki/Packaging:RPMMacros
-# %{_prefix}            /usr
-# %{_exec_prefix}       %{_prefix}
-# %{_bindir}            %{_exec_prefix}/bin
-# %{_libdir}            %{_exec_prefix}/%{_lib}
-# %{_datarootdir}       %{_prefix}/share
-# %{_datadir}           %{_datarootdir}
-# %{_includedir}        %{_prefix}/include
-# %{_mandir}            /usr/share/man
-
 %files
 %{_bindir}/*
 %{_includedir}/ngspice/*
@@ -94,9 +79,6 @@ rm -rf $RPM_BUILD_ROOT
 %license COPYING
 
 #---------------------------------------------------------------------------------------------------
-
-# LC_TIME=en_US date +"%a %b %e %Y"
-# fabricesalvaire@@fedoraproject.org
 
 %changelog
 * Sun Sep 17 2017 Fabrice Salvaire <pyspice [AT] fabrice-salvaire DOT fr>
