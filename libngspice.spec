@@ -96,7 +96,8 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------------------------------------------------------------------
 
 # LC_TIME=en_US date +"%a %b %e %Y"
+# fabricesalvaire@@fedoraproject.org
 
 %changelog
-* Sun Sep 17 2017 Fabrice Salvaire <pyspice [AT] fabrice-salvairefedoraproject DOT fr>
+* Sun Sep 17 2017 Fabrice Salvaire <pyspice [AT] fabrice-salvaire DOT fr>
 - Initial Package for Fedora Copr
