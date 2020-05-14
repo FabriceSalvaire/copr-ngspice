@@ -1,5 +1,5 @@
 Name:               libngspice
-Version:            27
+Version:            32
 Release:            1%{?dist}
 Summary:            A mixed level/signal circuit simulator
 License:            BSD
@@ -10,13 +10,16 @@ Source0:            https://downloads.sourceforge.net/project/ngspice/ng-spice-r
 
 BuildRoot:          %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+BuildRequires:	gcc
+
 # BuildRequires:    readline-devel
 BuildRequires:      automake
+BuildRequires:      libtool
 BuildRequires:      bison
 BuildRequires:      byacc
 BuildRequires:      flex
-BuildRequires:      libtool
-# byacc ???
+
+# BuildRequires:	git
 
 # Requires:
 
@@ -48,18 +51,21 @@ export ACLOCAL_FLAGS=-Im4
 export CFLAGS="%{optflags}" # else configure fails
 
 %configure \
-  --enable-cider \
-  --enable-openmp \
-  --enable-xspice \
+  --disable-debug \ #  No debugging information included (optimized and compact code)
+  --enable-cider \ # Include CIDER numerical device simulator
+  --enable-openmp \ # Compile ngspice for multi-core processors. Paralleling is done by OpenMP (see Chapt. 16.10), and is enabled for certain MOS models.
+  --enable-xspice \ # Include the XSPICE extensions
   --with-ngshared \
   %{nil}
 
 # --with-readline=yes \
 
 # ???
-# --disable-debug \
-# --enable-maintainer-mode \
+# --disable-silent-rules \
+# --enable-adms \
 # --enable-dependency-tracking \
+# --enable-maintainer-mode \
+# --enable-predictor \
 
 %make_build
 
@@ -88,5 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 #---------------------------------------------------------------------------------------------------
 
 %changelog
+* Thu May 14 2020 Fabrice Salvaire <pyspice [AT] fabrice-salvaire DOT fr>
+- v32
 * Sun Sep 17 2017 Fabrice Salvaire <pyspice [AT] fabrice-salvaire DOT fr>
 - Initial Package for Fedora Copr
