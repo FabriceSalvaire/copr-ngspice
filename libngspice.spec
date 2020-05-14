@@ -6,7 +6,6 @@ License:            BSD
 URL:                http://ngspice.sourceforge.net
 
 Source0:            https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/%{version}/ngspice-%{version}.tar.gz
-# Source1:          https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/%{version}/ngspice-%{version}-manual.pdf
 
 BuildRoot:          %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
