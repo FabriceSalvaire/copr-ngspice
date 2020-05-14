@@ -1,3 +1,6 @@
+# Doc http://rpm.org/documentation.html
+# https://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/ch-specfiles.html
+
 Name:               libngspice
 Version:            32
 Release:            1%{?dist}
@@ -39,7 +42,11 @@ This package provides the libngspice.so library compiled using:
 # Command or series of commands to prepare the software to be built.
 %prep
 %setup -q -n ngspice-%{version}
-# %autosetup -n ngspice-%{version}
+# The -n option is used to set the name of the software's build directory.
+#   This is necessary only when the source archive unpacks into a directory named other than <name>- <version>.
+# The -q option is used to direct %setup to quiet its output.
+#   Verbose file listings won't be displayed when unpacking archives with this option.
+# autosetup -n ngspice-%{version}
 
 export ACLOCAL_FLAGS=-Im4
 ./autogen.sh # --adms
@@ -50,13 +57,10 @@ export ACLOCAL_FLAGS=-Im4
 
 export CFLAGS="%{optflags}" # else configure fails
 
-%configure \
-  --disable-debug \ #  No debugging information included (optimized and compact code)
-  --enable-cider \ # Include CIDER numerical device simulator
-  --enable-openmp \ # Compile ngspice for multi-core processors. Paralleling is done by OpenMP (see Chapt. 16.10), and is enabled for certain MOS models.
-  --enable-xspice \ # Include the XSPICE extensions
-  --with-ngshared \
-  %{nil}
+# --disable-debug #  No debugging information included (optimized and compact code)
+# --enable-cider  # Include CIDER numerical device simulator
+# --enable-openmp # Compile ngspice for multi-core processors. Paralleling is done by OpenMP (see Chapt. 16.10), and is enabled for certain MOS models.
+# --enable-xspice # Include the XSPICE extensions
 
 # --with-readline=yes \
 
@@ -66,6 +70,14 @@ export CFLAGS="%{optflags}" # else configure fails
 # --enable-dependency-tracking \
 # --enable-maintainer-mode \
 # --enable-predictor \
+
+%configure \
+  --disable-debug \
+  --enable-cider \
+  --enable-openmp \
+  --enable-xspice \
+  --with-ngshared \
+  %{nil}
 
 %make_build
 
