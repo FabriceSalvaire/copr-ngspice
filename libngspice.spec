@@ -39,10 +39,8 @@ This package provides the libngspice.so library compiled using:
 
 # Command or series of commands to prepare the software to be built.
 %prep
-
-cat %{SOURCE0} | gzip -dc  | tar xof -
-
-%autosetup -n ngspice-%{version}
+%setup -q
+#! %autosetup -n ngspice-%{version}
 
 export ACLOCAL_FLAGS=-Im4
 ./autogen.sh # --adms
