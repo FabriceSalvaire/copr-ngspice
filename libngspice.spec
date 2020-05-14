@@ -10,12 +10,13 @@ Source0:            https://downloads.sourceforge.net/project/ngspice/ng-spice-r
 
 BuildRoot:          %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:      readline-devel
+# BuildRequires:    readline-devel
 BuildRequires:      automake
-BuildRequires:      libtool
 BuildRequires:      bison
 BuildRequires:      byacc
 BuildRequires:      flex
+BuildRequires:      libtool
+# byacc ???
 
 # Requires:
 
@@ -25,7 +26,11 @@ BuildRequires:      flex
 Ngspice is a mixed-level/mixed-signal circuit simulator, based on
 three open source software packages: Spice3f5, Cider1b1 and Xspice.
 
-This package provides the libngspice.so library.
+This package provides the libngspice.so library compiled using:
+
+  --enable-openmp
+  --enable-cider
+  --enable-xspice
 
 #---------------------------------------------------------------------------------------------------
 
@@ -47,9 +52,11 @@ export CFLAGS="%{optflags}" # else configure fails
   --enable-openmp \
   --enable-xspice \
   --with-ngshared \
-  --with-readline=yes \
   %{nil}
 
+# --with-readline=yes \
+
+# ???
 # --disable-debug \
 # --enable-maintainer-mode \
 # --enable-dependency-tracking \
