@@ -96,11 +96,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %{_bindir}/*
+%{_datadir}/ngspice/*
 %{_includedir}/ngspice/*
 %{_libdir}/libngspice*
 %{_libdir}/ngspice/
+%{_libdir}/pkgconfig/ngspice.pc
 %{_mandir}/man1/*
-%{_datadir}/ngspice/*
 %license COPYING
 
 #---------------------------------------------------------------------------------------------------
